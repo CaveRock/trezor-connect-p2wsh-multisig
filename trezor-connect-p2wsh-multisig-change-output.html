@@ -180,13 +180,11 @@
         var coinNetwork = "Testnet";
 
         window.signTrezorMultisig = async () => { //TODO? Take one arg for inputs outputs, can reduce calling code
-            //var inputJson = JSON.parse(inputs);
-            //alert(inputJson[0].address_n);
-            //var outputJson = JSON.parse(outputs);
+         
 
             TrezorConnect.manifest({
-                email: 'oliver@bitdirect.co.za',
-                appUrl: 'https://bitdirect.co.za'
+                email: 'test@email.com',
+                appUrl: 'test.com'
             });
 
             try {
@@ -194,22 +192,17 @@
                     .then(function (response) {
 
                         if (response.success) {
-                            //alert(response.payload.signatures[0]);
-                            //console.log('Serialized TX:', response.serialized_tx); // tx in hex
-                            //console.log('Signatures:', response.signatures); // array of signatures, in hex
-                            //document.getElementById("errormsg").innerHTML = JSON.stringify(response, undefined, 2);
+                            
                             var stringed = JSON.stringify(response);
-                            //alert(stringed);
+                           
 
                             var signResult = document.getElementById("signResult");
                             signResult.innerHTML = response.payload.serializedTx;
-                            //return dotNetHelper.invokeMethodAsync("TrezorSignMultisigKeyCallback", stringed);
+                          
                         } else {
                             alert(response.payload.error);
                             var stringed = JSON.stringify(response);
-                            //document.getElementById("errormsg").innerHTML = JSON.stringify(response, undefined, 2);
-                            // console.error('Error:', response.error); // error message
-                            //return dotNetHelper.invokeMethodAsync("TrezorSignMultisigKeyCallback", stringed);
+                           
                         }
                     });
             } catch (err) {
